@@ -1,0 +1,7 @@
+{
+  "name": "exp",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
