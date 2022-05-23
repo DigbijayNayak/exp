@@ -19,23 +19,25 @@ import axios from "axios";
 const ActivityPage = ({ history }: any) => {
   const [listItems, setListItems] = useState<any>([]);
 
-  const goTo = (path: string) => {
-    history.push(path);
-  };
+  // const goTo = (path: string) => {
+  //   history.push(path);
+  // };
 
   React.useEffect(() => {
-    sendRequest().then((data) => {
-      setListItems(data.data);
+    sendRequest().then((response) => {
+      console.log(response);
+      setListItems(response);
     });
   }, []);
 
   const sendRequest = () => {
-    return axios
-      .get("https://orangevalleycaa.org/api/videos")
+    const userData =  axios
+      .get("https://api.github.com/users/timmywheels/repos")
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         return response.data;
       });
+    return userData;
   };
 
   return (
@@ -48,26 +50,22 @@ const ActivityPage = ({ history }: any) => {
         </IonHeader>
 
         <IonContent>
-          <IonList color="primary">
-            {listItems.map((item: any) => {
-              return (
-                <IonItem>
-                  {/* <IonAvatar slot="start">
-                                    <IonImg src={item['category']}> </IonImg>
-                            </IonAvatar> */}
-                  <IonLabel>
-                    <h3>
-                      {" "}
-                      {item["id"]} {item["category"]}{" "}
-                    </h3>
-                  </IonLabel>
-                </IonItem>
-              );
-            })}
-          </IonList>
+            <IonList>
+              {
+                listItems.map((item: any) => {
+                  return (
+                      <IonItem key={item['id']}>
+                        <IonLabel>
+                          <h3>{item['name']}</h3>
+                        </IonLabel>
+                      </IonItem>
+                  );
+                })
+              }
+            </IonList>
 
           {/* <h2>Activity</h2>
-                <IonButton onClick={() => goTo('/tabs/activity/detail/thing')}>Go To Details</IonButton> */}
+          <IonButton onClick={() => goTo('/tabs/activity/detail/thing')}>Go To Details</IonButton> */}
         </IonContent>
       </IonPage>
     </>
