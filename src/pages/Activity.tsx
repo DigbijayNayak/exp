@@ -13,15 +13,15 @@ import {
   IonTitle,
   IonToolbar,
 } from "@ionic/react";
-import { useState } from "react";
+import { useState, useContext, createContext } from "react";
 import axios from "axios";
-
+// const UserContext = createContext();
 const ActivityPage = ({ history }: any) => {
   const [listItems, setListItems] = useState<any>([]);
 
-  // const goTo = (path: string) => {
-  //   history.push(path);
-  // };
+  const goTo = (path: string) => {
+    history.push(path);
+  };
 
   React.useEffect(() => {
     sendRequest().then((response) => {
@@ -32,7 +32,7 @@ const ActivityPage = ({ history }: any) => {
 
   const sendRequest = () => {
     const userData =  axios
-      .get("https://api.github.com/users/timmywheels/repos")
+      .get("https://orangevalleycaa.org/api/videos")
       .then((response) => {
         // console.log(response);
         return response.data;
@@ -42,6 +42,7 @@ const ActivityPage = ({ history }: any) => {
 
   return (
     <>
+    {/* <UserContext.Provider value={listItems}> */}
       <IonPage>
         <IonHeader>
           <IonToolbar>
@@ -54,9 +55,10 @@ const ActivityPage = ({ history }: any) => {
               {
                 listItems.map((item: any) => {
                   return (
-                      <IonItem key={item['id']}>
+                      <IonItem key={item['id']} button onClick={() => goTo('/detail')}>
                         <IonLabel>
-                          <h3>{item['name']}</h3>
+                          <IonImg src={item['cropped']}></IonImg>
+                          <h2>{item['name']}</h2>
                         </IonLabel>
                       </IonItem>
                   );
@@ -68,6 +70,7 @@ const ActivityPage = ({ history }: any) => {
           <IonButton onClick={() => goTo('/tabs/activity/detail/thing')}>Go To Details</IonButton> */}
         </IonContent>
       </IonPage>
+      {/* </UserContext.Provider> */}
     </>
   );
 };

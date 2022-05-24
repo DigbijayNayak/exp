@@ -1,5 +1,6 @@
-import { IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent } from '@ionic/react';
+import { IonHeader, IonToolbar, IonButtons, IonBackButton, IonTitle, IonContent, IonImg } from '@ionic/react';
 import React from 'react';
+import ActivityPage from './Activity';
 
 export const DetailPage = ({history, match}: any) => {
     console.log('Detail for thing', match.params.thing);
@@ -16,6 +17,7 @@ export const DetailPage = ({history, match}: any) => {
             </IonHeader>
 
             <IonContent>
+                {/* <ActivityPage /> */}
                 <h2>Detail</h2>
             </IonContent>
         </>

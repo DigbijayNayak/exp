@@ -25,6 +25,7 @@ import './theme/variables.css';
 import { SignupPage } from './pages/Signup';
 import { ResetPasswordPage } from './pages/ResetPassword';
 import AppStack from './pages/AppStack';
+import { DetailPage } from './pages/Detail';
 
 setupIonicReact();
 
@@ -38,6 +39,7 @@ const App: React.FC = () => {
             <Route path="/login" component={LoginPage} exact={true} />
             <Route path="/signup" component={SignupPage} exact={true} />
             <Route path="/reset-password" component={ResetPasswordPage} exact={true} />
+            <Route path={"/detail"} component={DetailPage} exact={true} />
             <Route exact path="/" render={() => <Redirect to="/signup" />} />
           </IonRouterOutlet>
           <Route path="/tabs" component={AppStack} />
